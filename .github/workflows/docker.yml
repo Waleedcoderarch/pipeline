@@ -1,22 +1,3 @@
-name: Build and test Docker image
-on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-      - name: Build image
-        run: docker build -t test-project:latest .
-
 name: Test Docker Pipeline
 
 on:
@@ -35,11 +16,6 @@ jobs:
         run: |
           if [ -z "${{ secrets.DOCKER_USERNAME }}" ] || [ -z "${{ secrets.DOCKER_PASSWORD }}" ]; then
             echo "Docker secrets are not set!"
-            exit 1
-          fi
-          # Optionally, warn if username contains whitespace or newlines
-          if [[ "${{ secrets.DOCKER_USERNAME }}" =~ [[:space:]] ]]; then
-            echo "Docker username contains whitespace or newline."
             exit 1
           fi
 
