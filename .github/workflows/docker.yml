@@ -12,6 +12,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      # 🔍 DEBUG STEP — ADD HERE
+      - name: Debug username length
+        run: |
+          echo "Length: ${#USERNAME}"
+        env:
+          USERNAME: ${{ secrets.DOCKER_USERNAME }}
+
       - name: Validate Docker secrets
         run: |
           if [ -z "${{ secrets.DOCKER_USERNAME }}" ] || [ -z "${{ secrets.DOCKER_PASSWORD }}" ]; then
