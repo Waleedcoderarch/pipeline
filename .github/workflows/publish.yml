@@ -14,11 +14,16 @@ jobs:
 
       - name: Validate Docker secrets
         run: |
-          if [ -z "${{ secrets.DOCKER_USERNAME }}" ] || [ -z "${{ secrets.DOCKER_PASSWORD }}" ]; then
+          username="${{ secrets.DOCKER_USERNAME }}"
+          password="${{ secrets.DOCKER_PASSWORD }}"
+          # remove CRs and trim leading/trailing whitespace/newlines
+          username="$(printf '%s' "$username" | tr -d '\r' | sed -E 's/^[[:space:]]+|[[:space:]]+$//g')"
+          password="$(printf '%s' "$password" | tr -d '\r' | sed -E 's/^[[:space:]]+|[[:space:]]+$//g')"
+          if [ -z "$username" ] || [ -z "$password" ]; then
             echo "Docker secrets are not set!"
             exit 1
           fi
-          if [[ "${{ secrets.DOCKER_USERNAME }}" =~ [[:space:]] ]]; then
+          if [[ "$username" =~ [[:space:]] ]]; then
             echo "Docker username contains whitespace or newline."
             exit 1
           fi
