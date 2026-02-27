@@ -34,6 +34,12 @@ jobs:
       - name: Push image
         run: docker push "${{ secrets.DOCKER_USERNAME }}/test-project:latest"
 
+ # ⭐ ADD HERE — Deploy monitoring stack
+      - name: Deploy monitoring stack
+        run: |
+          docker compose up -d
+
+
       # ⭐ NEW STEP — Send SMS Notification
       - name: Notify Deployment via SMS
         run: |
