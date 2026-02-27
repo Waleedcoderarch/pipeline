@@ -12,7 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # 🔍 DEBUG STEP — ADD HERE
       - name: Debug username length
         run: |
           echo "Length: ${#USERNAME}"
@@ -34,3 +33,8 @@ jobs:
 
       - name: Push image
         run: docker push "${{ secrets.DOCKER_USERNAME }}/test-project:latest"
+
+      # ⭐ NEW STEP — Send SMS Notification
+      - name: Notify Deployment via SMS
+        run: |
+          curl -X POST https://YOUR-API-ID.execute-api.ap-south-1.amazonaws.com
