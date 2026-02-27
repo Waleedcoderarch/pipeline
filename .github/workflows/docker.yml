@@ -37,4 +37,4 @@ jobs:
       # ⭐ NEW STEP — Send SMS Notification
       - name: Notify Deployment via SMS
         run: |
-          curl -X POST https://YOUR-API-ID.execute-api.ap-south-1.amazonaws.com
+          curl -X POST OST https://61hgbriox2.execute-api.us-east-1.amazonaws.com/notify
