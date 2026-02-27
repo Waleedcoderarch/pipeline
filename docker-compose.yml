@@ -2,7 +2,7 @@
 
 services:
   app:
-    image: waleedcoderarch/test-project:latest
+    image: waleedcodearch/test-project:latest
     ports:
       - "80:80"
 
