@@ -1,8 +1,8 @@
-version: "3"
+
 
 services:
   app:
-    image: ${DOCKER_USERNAME}/test-project:latest
+    image: waleedcoderarch/test-project:latest
     ports:
       - "80:80"
 
